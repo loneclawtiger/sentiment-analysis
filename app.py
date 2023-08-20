@@ -1,6 +1,6 @@
+from nltk.sentiment import SentimentIntensityAnalyzer
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
-import subprocess
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -16,11 +16,16 @@ def analyze_sentiment():
 
 
 def analyze_sentiment_with_python_script(text):
-    # Call your Python sentiment analysis script here
-    # For demonstration purposes, I'm using a simple echo command
-    cmd = f'echo "{text}"'
-    result = subprocess.check_output(cmd, shell=True, text=True)
-    return result.strip()
+    sia = SentimentIntensityAnalyzer()
+    sentiment_scores = sia.polarity_scores(text)
+    compound_score = sentiment_scores["compound"]
+
+    if compound_score > 0.05:
+        return "Positive"
+    elif compound_score < -0.05:
+        return "Negative"
+    else:
+        return "Neutral"
 
 
 if __name__ == "__main__":
