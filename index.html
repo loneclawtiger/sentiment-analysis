@@ -44,7 +44,7 @@
         <textarea class="form-control bg-transparent border border-black border-1 display-6" id="inputText" rows="8"></textarea>
       </div>
 
-      <div class="mt-3 display-6 text-center" id="result"></div>
+      <div class="mt-3 display-6 text-center">Sentiment Analysis Result: <span id="result" class="fw-bold"></span></div>
     </div>
 
     <!-- Link to Bootstrap JS and any other necessary scripts -->
@@ -71,7 +71,7 @@
           })
           .then((response) => response.json())
           .then((data) => {
-            resultDiv.innerHTML = `Sentiment Analysis Result: ${data.result}`;
+            resultDiv.innerHTML = `${data.result}`;
           })
           .catch((error) => {
             console.error("Error:", error);

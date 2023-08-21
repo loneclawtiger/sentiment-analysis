@@ -16,6 +16,8 @@ def analyze_sentiment():
 
 
 def analyze_sentiment_with_python_script(text):
+    # nltk.download('popular')
+    # nltk.download('vader_lexicon')
     sia = SentimentIntensityAnalyzer()
     sentiment_scores = sia.polarity_scores(text)
     compound_score = sentiment_scores["compound"]
